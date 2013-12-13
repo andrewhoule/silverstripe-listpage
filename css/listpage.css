@@ -1,0 +1,10 @@
+.list-item {
+	overflow: hidden;
+}
+.list-items-category {
+	display: block;
+	position: relative;
+}
+.list-items-category a {
+	cursor: pointer;
+}
