@@ -9,11 +9,11 @@ if(toggleClass == "has-toggle") {
 
 	// Behavior when category is clicked (slide toggle)
 	$('.list-items-category a').click(function(){
-		$('.list-items-category').removeClass('active');
-		$(this).parent().parent().siblings().find(".list-items-wrap").hide(); // Hide Siblings
-		$(this).parent().toggleClass('active');
-	    var activeClass = $(this).attr('class');
-	    $('.list-items-wrap.'+activeClass).slideToggle('fast');
+		$(this).parent().parent().siblings().find('.list-items-category').removeClass('active');
+	 	$(this).parent().toggleClass('active');
+	 	$(this).parent().parent().siblings().find(".list-items-wrap").hide();
+	 	var activeClass = $(this).attr('class');
+	 	$('.list-items-wrap.'+activeClass).slideToggle('fast');
 	   	return false;
 	});
 }
