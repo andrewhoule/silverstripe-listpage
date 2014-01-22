@@ -39,6 +39,10 @@ class ListCategory extends DataObject {
 		return $text;
 	}
 
+	public function getTitle() {
+		return $this->Category;
+	}
+
 }
 
 ?>
