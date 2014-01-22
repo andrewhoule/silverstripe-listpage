@@ -5,6 +5,7 @@
 			<div class="list-category">
 				<h3 class="list-items-category"><a class="list-items-$ID">$Category</a></h3>
 				<div class="list-items-wrap list-items-$ID">
+					<% if Description %><p class="list-items-category-description">$Description</p><% end_if %>
 					<% loop ListItems %>
 						<div class="list-item">
 							<% if PhotoSized %><img src="$PhotoSized(120).URL" class="list-img"><% end_if %>
