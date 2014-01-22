@@ -13,7 +13,7 @@ class ListPage extends Page {
 	);
 
     private static $defaults = array (
-        "ShowToggle" => true
+        "ToggleEffect" => true
     );
 	
 	private static $icon = "listpage/images/listpage";
