@@ -19,7 +19,7 @@
 	<% end_if %>
 	<% if UncategorizedListItems %>
 		<div class="list-category">
-			<h3 class="list-items-category"><a class="list-items-$ID">Other</a></h3>
+			<h3 class="list-items-category">Other</h3>
 			<div class="list-items-wrap list-items-$ID">
 				<% loop UncategorizedListItems %>
 					<div class="list-item">
