@@ -1,27 +1,27 @@
 <?php
 
 class ListPage extends Page {
-	
-	private static $db = array (
+    
+    private static $db = array (
         'ToggleEffect' => 'Boolean',
-		'BottomContent' => 'HTMLText'
-	);
-	
-	private static $has_many = array (
-		'ListItems' => 'ListItem',
-		'ListCategories' => 'ListCategory'
-	);
+        'BottomContent' => 'HTMLText'
+    );
+    
+    private static $has_many = array (
+        'ListItems' => 'ListItem',
+        'ListCategories' => 'ListCategory'
+    );
 
     private static $defaults = array (
         "ToggleEffect" => true
     );
-	
-	private static $icon = "listpage/images/listpage";
-	
-	public function getCMSFields() {
-		$fields = parent::getCMSFields();
-		$fields->addFieldToTab('Root.Main', HTMLEditorField::create('BottomContent')->setTitle('Content for below the list items'),'Metadata');
-		$ListItemGridField = new GridField(
+    
+    private static $icon = "listpage/images/listpage";
+    
+    public function getCMSFields() {
+        $fields = parent::getCMSFields();
+        $fields->addFieldToTab('Root.Main', HTMLEditorField::create('BottomContent')->setTitle('Content for below the list items'),'Metadata');
+        $ListItemGridField = new GridField(
             'ListItems',
             'List Item',
             $this->ListItems(),
@@ -37,7 +37,7 @@ class ListPage extends Page {
                 ->addComponent(new GridFieldSortableRows('SortID'))
         );
         $fields->addFieldToTab("Root.ListItems", $ListItemGridField);
-		$ListCategoryGridField = new GridField(
+        $ListCategoryGridField = new GridField(
             'ListCategories',
             'List Category',
             $this->ListCategories(),
@@ -55,8 +55,8 @@ class ListPage extends Page {
         $fields->addFieldToTab("Root.ListCategories", $ListCategoryGridField);
         $fields->addFieldToTab('Root.Options', HeaderField::create('ToggleDescription')->setTitle('Display Options'));
         $fields->addFieldToTab('Root.Options', CheckboxField::create('ToggleEffect')->setTitle('Use Toggle Effect'));
-		return $fields;
-	}	
+        return $fields;
+    }   
 
 }
 
@@ -97,7 +97,12 @@ class ListPage_Controller extends Page_Controller {
         }
         return $uncategorizedlistitems;
     }
-	
+
+    public function MoreThanOneListCategory() {
+        if($this->ListCategories()->count() + $this->UncategorizedListItems()->count() > 1)
+            return true;
+    }
+    
 }
 
 ?>

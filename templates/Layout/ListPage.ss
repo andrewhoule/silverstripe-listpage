@@ -14,11 +14,14 @@
 		<% end_loop %>
 	<% end_if %>
 	<% if UncategorizedListItems %>
-		<ul class="list-items-wrap list-items-$ID">
-			<% loop UncategorizedListItems %>
-				<% include ListItems %>
-			<% end_loop %>
-		</ul><!-- list-items -->
+		<div class="list-category">
+			<% if MoreThanOneListCategory %><h3 class="list-items-category"><a class="list-items-$ID">Other</a></h3><% end_if %>
+			<ul class="list-items-wrap list-items-$ID">
+				<% loop UncategorizedListItems %>
+					<% include ListItems %>
+				<% end_loop %>
+			</ul><!-- list-items -->
+		</div><!-- list-category -->
 	<% end_if %>
-	<% if BottomContent %>$BottomContent<% end_if %>
 </div><!-- list-content -->
+<% if BottomContent %>$BottomContent<% end_if %>
