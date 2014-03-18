@@ -100,7 +100,7 @@ class ListPage_Controller extends Page_Controller {
     }
 
     public function MoreThanOneListCategory() {
-        if($this->ListCategories()->count() + $this->UncategorizedListItems()->count() > 1)
+        if($this->ListCategories()->count())
             return true;
     }
     
