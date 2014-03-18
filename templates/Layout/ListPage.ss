@@ -3,7 +3,13 @@
 	<% if ListCategories %>
 		<% loop ListCategories %>
 			<div class="list-category">
-				<h3 class="list-items-category"><a class="list-items-$ID">$Category</a></h3>
+				<h3 class="list-items-category">
+					<% if Top.ToggleEffect %>
+						<a class="list-items-$ID">$Category</a>
+					<% else %>
+						$Category
+					<% end_if %>
+				</h3>
 				<ul class="list-items-wrap list-items-$ID">
 					<% if Description %><p class="list-items-category-description">$Description</p><% end_if %>
 					<% loop ListItems %>
@@ -15,7 +21,15 @@
 	<% end_if %>
 	<% if UncategorizedListItems %>
 		<div class="list-category">
-			<% if MoreThanOneListCategory %><h3 class="list-items-category"><a class="list-items-$ID">Other</a></h3><% end_if %>
+			<% if MoreThanOneListCategory %>
+				<h3 class="list-items-category">
+					<% if Top.ToggleEffect %>
+						<a class="list-items-$ID">Other</a>
+					<% else %>
+						Other
+					<% end_if %>
+				</h3>
+			<% end_if %>
 			<ul class="list-items-wrap list-items-$ID">
 				<% loop UncategorizedListItems %>
 					<% include ListItems %>
