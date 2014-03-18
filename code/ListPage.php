@@ -34,8 +34,9 @@ class ListPage extends Page {
                 ->addComponent(new GridFieldEditButton())
                 ->addComponent(new GridFieldDeleteAction())
                 ->addComponent(new GridFieldDetailForm())
-                ->addComponent(new GridFieldSortableRows('SortID'))
+                ->addComponent($sortable=new GridFieldSortableRows('SortID'))
         );
+        $sortable->setAppendToTop(true);
         $fields->addFieldToTab("Root.ListItems", $ListItemGridField);
         $ListCategoryGridField = new GridField(
             'ListCategories',
@@ -50,8 +51,9 @@ class ListPage extends Page {
                 ->addComponent(new GridFieldEditButton())
                 ->addComponent(new GridFieldDeleteAction())
                 ->addComponent(new GridFieldDetailForm())
-                ->addComponent(new GridFieldSortableRows('SortID'))
+                ->addComponent($sortable=new GridFieldSortableRows('SortID'))
         );
+        $sortable->setAppendToTop(true);
         $fields->addFieldToTab("Root.ListCategories", $ListCategoryGridField);
         $fields->addFieldToTab('Root.Options', HeaderField::create('ToggleDescription')->setTitle('Display Options'));
         $fields->addFieldToTab('Root.Options', CheckboxField::create('ToggleEffect')->setTitle('Use Toggle Effect'));
