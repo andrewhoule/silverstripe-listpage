@@ -24,7 +24,7 @@ class ListItem extends DataObject {
 		'Category' => 'Category'
    	);
 
-	private static $default_sort = 'SortID Asc';
+	private static $default_sort = 'SortID DESC';
 
 	public function getCMSFields() {
 		if($this->ID == 0) {
