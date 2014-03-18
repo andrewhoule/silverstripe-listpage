@@ -4,7 +4,7 @@ class ListCategory extends DataObject {
 	
 	private static $db = array (
 		'SortID' => 'Int',
-		'Category' => 'Varchar(75)',
+		'Category' => 'Text',
 		'Description' => 'HTMLText'
 	);
 	
