@@ -24,6 +24,11 @@ class ListItem extends DataObject {
 		'Category' => 'Category'
    	);
 
+   	public function canCreate($Member = null) { return true; }
+	public function canEdit($Member = null) { return true; }
+	public function canView($Member = null) { return true; }
+	public function canDelete($Member = null) { return true; }
+
 	private static $default_sort = 'SortID Asc';
 
 	public function getCMSFields() {
