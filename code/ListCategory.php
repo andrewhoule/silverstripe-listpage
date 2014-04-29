@@ -48,6 +48,13 @@ class ListCategory extends DataObject {
 		return $this->Category;
 	}
 
+	public function ListItems() {
+		if($this->getComponent('ListPage')->AlphabeticalOrder)
+            return $this->getComponents('ListItems')->sort("Title ASC");
+        else 
+            return $this->getComponents('ListItems');
+	}
+
 }
 
 ?>

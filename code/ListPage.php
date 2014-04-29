@@ -4,6 +4,7 @@ class ListPage extends Page {
     
     private static $db = array (
         'ToggleEffect' => 'Boolean',
+        'AlphabeticalOrder' => 'Boolean',
         'BottomContent' => 'HTMLText'
     );
     
@@ -13,7 +14,8 @@ class ListPage extends Page {
     );
 
     private static $defaults = array (
-        "ToggleEffect" => true
+        "ToggleEffect" => true,
+        "AlphabeticalOrder" => true
     );
     
     private static $icon = "listpage/images/listpage";
@@ -57,6 +59,7 @@ class ListPage extends Page {
         $fields->addFieldToTab("Root.ListCategories", $ListCategoryGridField);
         $fields->addFieldToTab('Root.Options', HeaderField::create('ToggleDescription')->setTitle('Display Options'));
         $fields->addFieldToTab('Root.Options', CheckboxField::create('ToggleEffect')->setTitle('Use Toggle Effect'));
+        $fields->addFieldToTab('Root.Options', CheckboxField::create('AlphabeticalOrder')->setTitle('Use Alphabetical Order (By the List Item Title)'));
         return $fields;
     }   
 
@@ -90,7 +93,10 @@ class ListPage_Controller extends Page_Controller {
 
     public function UncategorizedListItems() {
         $uncategorizedlistitems = new ArrayList();
-        $listitems = $this->getComponents('ListItems');
+        if($this->AlphabeticalOrder)
+            $listitems = $this->getComponents('ListItems')->sort("Title ASC");
+        else 
+            $listitems = $this->getComponents('ListItems');
         if($listitems) {
             foreach($listitems AS $listitem) {
                 if($listitem->Category() == "Other") {
