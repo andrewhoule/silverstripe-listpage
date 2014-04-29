@@ -36,6 +36,7 @@ class ListPage extends Page {
                 ->addComponent(new GridFieldEditButton())
                 ->addComponent(new GridFieldDeleteAction())
                 ->addComponent(new GridFieldDetailForm())
+                ->addComponent(new GridFieldFilterHeader())
                 ->addComponent($sortable=new GridFieldSortableRows('SortID'))
         );
         $sortable->setAppendToTop(true);
@@ -53,6 +54,7 @@ class ListPage extends Page {
                 ->addComponent(new GridFieldEditButton())
                 ->addComponent(new GridFieldDeleteAction())
                 ->addComponent(new GridFieldDetailForm())
+                ->addComponent(new GridFieldFilterHeader())
                 ->addComponent($sortable=new GridFieldSortableRows('SortID'))
         );
         $sortable->setAppendToTop(true);
