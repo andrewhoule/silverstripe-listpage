@@ -108,6 +108,11 @@ class ListItem extends DataObject {
 			return false;
 	}
 
+	public function LinkExists() {
+		if($this->Link || $this->getComponent('Resource')->exists()) 
+			return true;
+	}
+
 }
 
 ?>
