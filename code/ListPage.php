@@ -5,6 +5,7 @@ class ListPage extends Page {
     private static $db = array (
         'ToggleEffect' => 'Boolean',
         'AlphabeticalOrder' => 'Boolean',
+        'AlphaOrderCategories' => 'Boolean',
         'BottomContent' => 'HTMLText'
     );
     
@@ -15,7 +16,8 @@ class ListPage extends Page {
 
     private static $defaults = array (
         "ToggleEffect" => true,
-        "AlphabeticalOrder" => true
+        "AlphabeticalOrder" => false,
+        "AlphaOrderCategories" => false
     );
     
     private static $icon = "listpage/images/listpage";
@@ -59,9 +61,11 @@ class ListPage extends Page {
         );
         $sortable->setAppendToTop(true);
         $fields->addFieldToTab("Root.ListCategories", $ListCategoryGridField);
-        $fields->addFieldToTab('Root.Options', HeaderField::create('ToggleDescription')->setTitle('Display Options'));
-        $fields->addFieldToTab('Root.Options', CheckboxField::create('ToggleEffect')->setTitle('Use Toggle Effect'));
-        $fields->addFieldToTab('Root.Options', CheckboxField::create('AlphabeticalOrder')->setTitle('Use Alphabetical Order (By the List Item Title)'));
+        $fields->addFieldToTab('Root.Options', HeaderField::create('ListItemsDesc')->setTitle('List Items Options'));
+        $fields->addFieldToTab('Root.Options', CheckboxField::create('ToggleEffect')->setTitle('Use Toggle Effect on Categories'));
+        $fields->addFieldToTab('Root.Options', CheckboxField::create('AlphabeticalOrder')->setTitle('Show List Items in Alphabetical Order (By the List Item Title)'));
+        $fields->addFieldToTab('Root.Options', HeaderField::create('ListCategoriesDesc')->setTitle('List Categories Options'));
+        $fields->addFieldToTab('Root.Options', CheckboxField::create('AlphaOrderCategories')->setTitle('Show List Categories in Alphabetical Order (By the List Category Title)'));
         return $fields;
     }   
 
@@ -82,7 +86,10 @@ class ListPage_Controller extends Page_Controller {
 
     public function ListCategories() {
         $listcategoriesfiltered = new ArrayList();
-        $listcategories = $this->getComponents('ListCategories');
+        if($this->AlphaOrderCategories)
+            $listcategories = $this->getComponents('ListCategories')->sort('Category ASC');
+        else
+            $listcategories = $this->getComponents('ListCategories');
         if($listcategories) {
             foreach($listcategories AS $listcategory) {
                 if($listcategory->getComponents('ListItems')->count() > 0) {
