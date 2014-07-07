@@ -61,11 +61,11 @@ class ListPage extends Page {
         );
         $sortable->setAppendToTop(true);
         $fields->addFieldToTab("Root.ListCategories", $ListCategoryGridField);
-        $fields->addFieldToTab('Root.Options', HeaderField::create('ListItemsDesc')->setTitle('List Items Options'));
-        $fields->addFieldToTab('Root.Options', CheckboxField::create('ToggleEffect')->setTitle('Use Toggle Effect on Categories'));
-        $fields->addFieldToTab('Root.Options', CheckboxField::create('AlphabeticalOrder')->setTitle('Show List Items in Alphabetical Order (By the List Item Title)'));
-        $fields->addFieldToTab('Root.Options', HeaderField::create('ListCategoriesDesc')->setTitle('List Categories Options'));
-        $fields->addFieldToTab('Root.Options', CheckboxField::create('AlphaOrderCategories')->setTitle('Show List Categories in Alphabetical Order (By the List Category Title)'));
+        $fields->addFieldToTab('Root.Config', HeaderField::create('ListItemsDesc')->setTitle('List Items Options'));
+        $fields->addFieldToTab('Root.Config', CheckboxField::create('AlphabeticalOrder')->setTitle('Alphabetical Order')->setDescription('Show in alphabetical order (By the list item title)'));
+        $fields->addFieldToTab('Root.Config', HeaderField::create('ListCategoriesDesc')->setTitle('List Categories Options'));
+        $fields->addFieldToTab('Root.Config', CheckboxField::create('AlphaOrderCategories')->setTitle('Alphabetical Order')->setDescription('Show in alphabetical order (By the list category title)'));
+        $fields->addFieldToTab('Root.Config', CheckboxField::create('ToggleEffect')->setTitle('Toggle Effect')->setDescription('Set toggle effect on categories'));
         return $fields;
     }   
 

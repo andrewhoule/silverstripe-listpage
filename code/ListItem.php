@@ -64,7 +64,7 @@ class ListItem extends DataObject {
 				->displayIf("LinkType")->isEqualTo("resource")->andIf("LinkType")->isNotEqualTo("link")
             	->end(),
 			$ImageField,
-			TextareaField::create("Content")
+			HTMLEditorField::create("Content")
 		);
 	}
 
