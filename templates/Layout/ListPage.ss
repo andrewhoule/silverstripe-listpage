@@ -1,5 +1,5 @@
 <% if Content %>$Content<% end_if %>
-<div class="list-content<% if ToggleEffect %> has-toggle<% else %> no-toggle<% end_if %>">
+<div class="list-content<% if ToggleEffect %> has-toggle<% if StartToggleClosed %> start-closed-toggle<% else %> start-open-toggle<% end_if %><% else %> no-toggle<% end_if %>">
 	<% if ListCategories %>
 		<% loop ListCategories %>
 			<div class="list-category">

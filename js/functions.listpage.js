@@ -1,12 +1,18 @@
 $(document).ready(function(){
+
+
+/* ==========================================================================
+   Toggle Effect on List Categories
+   ========================================================================== */
   
 var toggleClass = $('.list-content').attr('class').split(' ')[1];
 if(toggleClass == "has-toggle") {
 	// Hide all items, then show the first list items by default
 	$('.list-items-wrap').hide();
-	$('.list-items-wrap:first').show();
-	$('.list-items-category:first').addClass('active');
-
+	if($(".list-content").hasClass("start-open-toggle")) {
+		$('.list-items-wrap:first').show();
+		$('.list-items-category:first').addClass('active');
+	}
 	// Behavior when category is clicked (slide toggle)
 	$('.list-items-category a').click(function(){
 		$(this).parent().parent().siblings().find('.list-items-category').removeClass('active');
@@ -18,4 +24,5 @@ if(toggleClass == "has-toggle") {
 	});
 }
 
-});
+
+}); // End of Doc Ready

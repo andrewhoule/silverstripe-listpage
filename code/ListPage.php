@@ -4,6 +4,7 @@ class ListPage extends Page {
     
     private static $db = array (
         'ToggleEffect' => 'Boolean',
+        'StartToggleClosed' => 'Boolean',
         'AlphabeticalOrder' => 'Boolean',
         'AlphaOrderCategories' => 'Boolean',
         'BottomContent' => 'HTMLText'
@@ -16,6 +17,7 @@ class ListPage extends Page {
 
     private static $defaults = array (
         "ToggleEffect" => true,
+        "StartToggleClosed" => true,
         "AlphabeticalOrder" => false,
         "AlphaOrderCategories" => false
     );
@@ -66,6 +68,7 @@ class ListPage extends Page {
         $fields->addFieldToTab('Root.Config', HeaderField::create('ListCategoriesDesc')->setTitle('List Categories Options'));
         $fields->addFieldToTab('Root.Config', CheckboxField::create('AlphaOrderCategories')->setTitle('Alphabetical Order')->setDescription('Show in alphabetical order (By the list category title)'));
         $fields->addFieldToTab('Root.Config', CheckboxField::create('ToggleEffect')->setTitle('Toggle Effect')->setDescription('Set toggle effect on categories'));
+        $fields->addFieldToTab('Root.Config', CheckboxField::create('StartToggleClosed')->setTitle('Start Toggle Closed')->setDescription('The toggle for all catogries will start closed, if off the first category toggle will be open'));
         return $fields;
     }   
 
