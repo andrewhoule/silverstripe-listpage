@@ -22,9 +22,9 @@ class ListItem extends DataObject {
 		'Link' => 'Link',
 		'ContentExcerpt' => 'Content',
 		'Category' => 'Category'
-   	);
+   );
 
-   	public function canCreate($Member = null) { return true; }
+   public function canCreate($Member = null) { return true; }
 	public function canEdit($Member = null) { return true; }
 	public function canView($Member = null) { return true; }
 	public function canDelete($Member = null) { return true; }
@@ -113,6 +113,9 @@ class ListItem extends DataObject {
 			return true;
 	}
 
-}
+	public function ToggleEffectItems() {
+		if($this->getComponent('ListPage')->ToggleEffectItems == true)
+			return true;
+	}
 
-?>
+}
