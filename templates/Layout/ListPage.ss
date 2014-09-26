@@ -11,7 +11,7 @@
 					<% end_if %>
 				</h3>
 				<ul class="list-items-wrap list-items-$ID">
-					<% if $Description %><p class="list-items-category-description">$Description</p><% end_if %>
+					<% if $Description %><div class="list-items-category-description">$Description</div><% end_if %>
 					<% loop ListItems %>
 						<% include ListItems %>
 					<% end_loop %>
