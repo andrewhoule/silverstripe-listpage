@@ -85,16 +85,23 @@ class ListItem extends DataObject {
 	}
 	
 	public function ContentExcerpt($length = 100) {
-   		$text = strip_tags($this->Content);
-	   	$length = abs((int)$length);
-	   	if(strlen($text) > $length) {
-	      	$text = preg_replace("/^(.{1,$length})(\s.*|$)/s", '\\1...', $text);
-	   	}
-	   	return $text;
+   	$text = strip_tags($this->Content);
+	   $length = abs((int)$length);
+	   if(strlen($text) > $length) {
+	     	$text = preg_replace("/^(.{1,$length})(\s.*|$)/s", '\\1...', $text);
+	   }
+	   return $text;
 	}
 
-	public function PhotoSized($x=120) {
-		 return $this->Photo()->setWidth($x);
+	public function PhotoSized() {
+		$PhotoWidth = $this->Photo()->getWidth;
+		$MaxPhotoWidth = $this->getComponent('ListPage')->PhotoMaxWidth;
+		if($PhotoWidth > $MaxPhotoWidth) {
+			return $this->Photo();
+		}
+		else {
+			return $this->Photo()->setWidth($MaxPhotoWidth);
+		}
 	}
 
 	public function Link() {
