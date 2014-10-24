@@ -19,9 +19,9 @@ class ListCategory extends DataObject {
 	private static $summary_fields = array (
 		'Category' => 'Category',
 		'DescriptionExcerpt' => 'Description'
-   	);
+   );
 
-   	public function canCreate($Member = null) { return true; }
+   public function canCreate($Member = null) { return true; }
 	public function canEdit($Member = null) { return true; }
 	public function canView($Member = null) { return true; }
 	public function canDelete($Member = null) { return true; }
@@ -50,11 +50,9 @@ class ListCategory extends DataObject {
 
 	public function ListItems() {
 		if($this->getComponent('ListPage')->AlphabeticalOrder)
-            return $this->getComponents('ListItems')->sort("Title ASC");
+            return $this->getComponents('ListItems')->sort('Title ASC')->filter('ListPageID',$this->getComponent('ListPage')->ID);
         else 
-            return $this->getComponents('ListItems');
+            return $this->getComponents('ListItems')->filter('ListPageID',$this->getComponent('ListPage')->ID);
 	}
 
 }
-
-?>
