@@ -94,14 +94,21 @@ class ListItem extends DataObject {
 	}
 
 	public function PhotoSized() {
-		$PhotoWidth = $this->Photo()->getWidth;
-		$MaxPhotoWidth = $this->getComponent('ListPage')->PhotoMaxWidth;
-		if($PhotoWidth > $MaxPhotoWidth) {
-			return $this->Photo();
-		}
-		else {
-			return $this->Photo()->setWidth($MaxPhotoWidth);
-		}
+		if($this->Photo()->exists()) {
+			$PhotoWidth = $this->Photo()->getWidth;
+			if($this->getComponent('ListPage')->PhotoMaxWidth) {
+				$MaxPhotoWidth = $this->getComponent('ListPage')->PhotoMaxWidth;
+			}
+			else {
+				$MaxPhotoWidth = 200;
+			}
+			if($PhotoWidth > $MaxPhotoWidth) {
+				return $this->Photo();
+			}
+			else {
+				return $this->Photo()->setWidth($MaxPhotoWidth);
+			}
+		}		
 	}
 
 	public function Link() {
