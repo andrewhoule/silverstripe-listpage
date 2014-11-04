@@ -131,7 +131,7 @@ class ListPage_Controller extends Page_Controller {
     }
 
     public function ToggleEffect() {
-        if($this->ToggleEffect == true AND $this->ListCategories()->count > 0)
+        if($this->ToggleEffect == true AND $this->ListCategories()->count() > 0)
             return true;
     }
     
