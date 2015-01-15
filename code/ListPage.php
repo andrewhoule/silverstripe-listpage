@@ -85,7 +85,7 @@ class ListPage_Controller extends Page_Controller {
     public static function load_requirements() {
         Requirements::css("listpage/css/listpage.css");
         Requirements::javascript(FRAMEWORK_DIR .'/thirdparty/jquery/jquery.js');
-        Requirements::javascript("listpage/js/functions.listpage.js");
+        Requirements::javascript("listpage/js/functionality.listpage.js");
     }
 
     public function init() {
