@@ -69,11 +69,11 @@ class ListPage extends Page {
         $fields->addFieldToTab("Root.ListCategories", $ListCategoryGridField);
         $fields->addFieldToTab('Root.Config', HeaderField::create('ListItemsDesc')->setTitle('List Items Options'));
         $fields->addFieldToTab('Root.Config', CheckboxField::create('AlphabeticalOrder')->setTitle('Alphabetical Order for List Items')->setDescription('Show in alphabetical order (By the list item title, overwrites drag and drop order)'));
-        $fields->addFieldToTab('Root.Config', CheckboxField::create('ToggleEffectItems')->setTitle('Toggle Effect for List Items')->setDescription('Set toggle effect on categories'));
+        $fields->addFieldToTab('Root.Config', CheckboxField::create('ToggleEffectItems')->setTitle('Toggle Effect for List Items')->setDescription('Set toggle effect on list items'));
         $fields->addFieldToTab("Root.Config", SliderField::create("PhotoMaxWidth","Max Photo Width",50,1600)->setDescription('For photo that is associated with list items'));
         $fields->addFieldToTab('Root.Config', HeaderField::create('ListCategoriesDesc')->setTitle('List Categories Options'));
         $fields->addFieldToTab('Root.Config', CheckboxField::create('AlphaOrderCategories')->setTitle('Alphabetical Order for List Categories')->setDescription('Show in alphabetical order (By the list category title, overwrites drag and drop ordering)'));
-        $fields->addFieldToTab('Root.Config', CheckboxField::create('ToggleEffect')->setTitle('Toggle Effect for List Cateogries')->setDescription('Set toggle effect on categories'));
+        $fields->addFieldToTab('Root.Config', CheckboxField::create('ToggleEffect')->setTitle('Toggle Effect for List Cateogries')->setDescription('Set toggle effect on list categories'));
         $fields->addFieldToTab('Root.Config', CheckboxField::create('StartToggleClosed')->setTitle('Start Toggle Closed for List Categories')->setDescription('The toggle for all catogries will start closed, if off the first category toggle will be open'));
         return $fields;
     }   
