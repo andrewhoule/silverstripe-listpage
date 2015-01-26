@@ -50,7 +50,7 @@ class ListItem extends DataObject {
 		$ImageField = UploadField::create('Photo')->setDescription('(Allowed filetypes: jpg, jpeg, png, gif)');
 		$ImageField->folderName = "ListPage"; 
 		$ImageField->getValidator()->allowedExtensions = array('jpg','jpeg','gif','png');
-		$DocumentField = UploadField::create('Resource')->setTitle('Resource/Document')->setDescription('(Allowed filetypes: pdf, doc, docx, txt, ppt, or pptx');
+		$DocumentField = UploadField::create('Resource')->setTitle('Resource/Document')->setDescription('(Allowed filetypes: pdf, doc, docx, txt, ppt, or pptx)');
 		$DocumentField->folderName = "ListPage"; 
 		$DocumentField->getValidator()->allowedExtensions = array('pdf','doc','docx','txt','ppt','pptx');
 		return new FieldList(
