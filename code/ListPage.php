@@ -2,51 +2,50 @@
 
 class ListPage extends Page
 {
-    
+
     private static $db = array(
-    'ToggleEffect' => 'Boolean',
-    'ToggleEffectItems' => 'Boolean',
-    'StartToggleClosed' => 'Boolean',
-    'AlphabeticalOrder' => 'Boolean',
-    'AlphaOrderCategories' => 'Boolean',
-    'BottomContent' => 'HTMLText',
-    'PhotoMaxWidth' => 'Int'
-  );
-    
+        'ToggleEffect' => 'Boolean',
+        'ToggleEffectItems' => 'Boolean',
+        'StartToggleClosed' => 'Boolean',
+        'AlphabeticalOrder' => 'Boolean',
+        'AlphaOrderCategories' => 'Boolean',
+        'BottomContent' => 'HTMLText',
+        'PhotoMaxWidth' => 'Int'
+    );
+
     private static $has_many = array(
-    'ListItems' => 'ListItem',
-    'ListCategories' => 'ListCategory'
-  );
+        'ListItems' => 'ListItem',
+        'ListCategories' => 'ListCategory'
+    );
 
     private static $defaults = array(
-    'ToggleEffect' => true,
-    'ToggleEffectItems' => true,
-    'StartToggleClosed' => true,
-    'AlphabeticalOrder' => false,
-    'AlphaOrderCategories' => false,
-    'PhotoMaxWidth' => '300'
-  );
-    
+        'ToggleEffect' => true,
+        'ToggleEffectItems' => true,
+        'StartToggleClosed' => true,
+        'AlphabeticalOrder' => false,
+        'AlphaOrderCategories' => false,
+        'PhotoMaxWidth' => '300'
+    );
+
     private static $icon = "listpage/images/listpage";
-   
+
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
         $fields->addFieldToTab('Root.Main', HTMLEditorField::create('BottomContent')->setTitle('Content for below the list items'), 'Metadata');
         $fields->addFieldToTab('Root.ListItems', GridField::create(
-      'ListItems',
-      'List Items',
-      $this->ListItems(),
-      GridFieldConfig_RecordEditor::create('50')->addComponent($sortableitems = new GridFieldSortableRows('SortID'))
-    ));
+            'ListItems',
+            'List Items',
+            $this->ListItems(),
+            GridFieldConfig_RecordEditor::create('50')->addComponent($sortableitems = new GridFieldSortableRows('SortID'))
+        ));
         $sortableitems->setAppendToTop(true);
-
         $fields->addFieldToTab('Root.ListCategories', GridField::create(
-      'ListCategories',
-      'List Categories',
-      $this->ListCategories(),
-      GridFieldConfig_RecordEditor::create('50')->addComponent($sortablecategories = new GridFieldSortableRows('SortID'))
-    ));
+            'ListCategories',
+            'List Categories',
+            $this->ListCategories(),
+            GridFieldConfig_RecordEditor::create('50')->addComponent($sortablecategories = new GridFieldSortableRows('SortID'))
+        ));
         $sortablecategories->setAppendToTop(true);
         $fields->addFieldToTab('Root.Config', HeaderField::create('ListItemsDesc')->setTitle('List Items Options'));
         $fields->addFieldToTab('Root.Config', CheckboxField::create('AlphabeticalOrder')->setTitle('Alphabetical Order for List Items')->setDescription('Show in alphabetical order (By the list item title, overwrites drag and drop order)'));
@@ -65,9 +64,9 @@ class ListPage_Controller extends Page_Controller
 
     public static function load_requirements()
     {
-        Requirements::css("listpage/css/listpage.css");
+        Requirements::css('listpage/css/listpage.css');
         Requirements::javascript(FRAMEWORK_DIR .'/thirdparty/jquery/jquery.js');
-        Requirements::javascript("listpage/js/functionality.listpage.js");
+        Requirements::javascript('listpage/js/listpage.js');
     }
 
     public function init()
