@@ -3,7 +3,7 @@ List Page Module
 
 ## Author
 * Andrew Houle
-* http://andyhoule.com
+* http://andrewhoule.me
 
 ## Requirements
 * SilverStripe minimum version 3.1+.
