@@ -2,20 +2,20 @@
 
 class ListItem extends DataObject
 {
-  
+
     private static $db = array(
     'SortID' => 'Int',
     'Title' => 'Text',
     'Content' => 'HTMLText',
     'LinkType' => "Enum('Link, Resource', 'Link')",
-    'Link' => 'Text'
+    'Link' => 'Text',
   );
-  
+
     private static $has_one = array(
     'ListPage' => 'ListPage',
     'ListCategory' => 'ListCategory',
     'Photo' => 'Image',
-    'Resource' => 'File'
+    'Resource' => 'File',
   );
 
     private static $summary_fields = array(
@@ -23,11 +23,11 @@ class ListItem extends DataObject
     'Title' => 'Title',
     'Link' => 'Link',
     'ContentExcerpt' => 'Content',
-    'Category' => 'Category'
+    'Category' => 'Category',
   );
 
     private static $defaults = array(
-    'LinkType' => 'Link'
+    'LinkType' => 'Link',
   );
 
     public function canCreate($Member = null)
@@ -64,23 +64,41 @@ class ListItem extends DataObject
                 $categorydropdown->setEmptyString("There are no categories created yet");
             }
         }
+
         $ImageField = UploadField::create('Photo')->setDescription('(Allowed filetypes: jpg, jpeg, png, gif)');
         $ImageField->folderName = 'ListPage';
         $ImageField->getValidator()->allowedExtensions = array('jpg','jpeg','gif','png');
-        $DocumentField = UploadField::create('Resource')->setTitle('Resource/Document')->setDescription('(Allowed filetypes: pdf, doc, docx, txt, ppt, or pptx)');
+
+        $DocumentField = UploadField::create('Resource')->setTitle('Resource/Document')->setDescription('(Allowed filetypes: pdf, doc, docx, txt, xls, xlsx, ppt, or pptx)');
         $DocumentField->folderName = "ListPage";
-        $DocumentField->getValidator()->allowedExtensions = array('pdf','doc','docx','txt','ppt','pptx');
+        $DocumentField->getValidator()->allowedExtensions = array('pdf','doc','docx','txt','xls','xlsx','ppt','pptx');
+
         $LinkField = TextField::create('Link')->setTitle('Link URL');
+
         $fields = FieldList::create(TabSet::create('Root'));
         $fields->addFieldsToTab('Root.Main', array(
-      $categorydropdown,
-      TextField::create('Title'),
-      OptionSetField::create('LinkType')->setTitle('')->setSource($this->dbObject('LinkType')->enumValues()),
-      TextField::create('Link')->setTitle('Link URL')->displayIf('LinkType')->isEqualTo('Link')->andIf('LinkType')->isNotEqualTo('Resource')->end(),
-      DisplayLogicWrapper::create($DocumentField)->displayIf('LinkType')->isEqualTo('Resource')->andIf('LinkType')->isNotEqualTo('Link')->end(),
-      $ImageField,
-     HTMLEditorField::create('Content')
-    ));
+            $categorydropdown,
+            TextField::create('Title'),
+            OptionSetField::create('LinkType')
+                ->setTitle('')
+                ->setSource($this->dbObject('LinkType')->enumValues()),
+            TextField::create('Link')
+                ->setTitle('Link URL')
+                ->displayIf('LinkType')
+                    ->isEqualTo('Link')
+                    ->andIf('LinkType')
+                    ->isNotEqualTo('Resource')
+                    ->end(),
+            DisplayLogicWrapper::create($DocumentField)
+                ->displayIf('LinkType')
+                    ->isEqualTo('Resource')
+                    ->andIf('LinkType')
+                    ->isNotEqualTo('Link')
+                    ->end(),
+            $ImageField,
+            HTMLEditorField::create('Content')
+        ));
+
         return $fields;
     }
 
@@ -103,7 +121,7 @@ class ListItem extends DataObject
             return null;
         }
     }
-  
+
     public function ContentExcerpt($length = 100)
     {
         $text = strip_tags($this->Content);
